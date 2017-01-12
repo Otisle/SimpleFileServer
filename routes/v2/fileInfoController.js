@@ -28,4 +28,32 @@ router.get('/:filename', function (req, res, next) {
     }
 })
 
+router.get('/', function (req, res, next) {
+    Files.find({}, function (error, files) {
+        if (files) {
+            // console.log(files);
+            var fileList = [];
+            Object.keys(files).forEach(function (key) {
+                var file = files[key];
+                let extension = MIME.extension(file.mimetype);
+                file._id = undefined;
+                file.__v = undefined;
+                file.path = undefined;
+                file.mimetype = extension;
+                fileList.push(file);
+            });
+            
+            res.json({
+                status: 'SUCCESS',
+                count: fileList.length,
+                list: fileList
+            });
+        } else {
+            var err = new Error('Not Found');
+            err.status = 404;
+            next(err);
+        }
+    })
+})
+
 module.exports = router;
