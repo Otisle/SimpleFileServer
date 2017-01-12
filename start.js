@@ -9,9 +9,11 @@ var mongoose = require('mongoose');
 var upload = require('./routes/v1/upload');
 var download = require('./routes/v1/download');
 
-var uploadController = require('./routes/v2/uploadController');
-var downloadController = require('./routes/v2/downloadController');
-var info = require('./routes/v2/fileInfoController');
+var index = require('./routes/v2/index');
+// var uploadController = require('./routes/v2/uploadController');
+// var downloadController = require('./routes/v2/downloadController');
+// var deleteController = require('./routes/v2/deleteController');
+var infoController = require('./routes/v2/fileInfoController');
 
 var app = express();
 
@@ -35,9 +37,12 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.use('/v1/upload', upload);
 app.use('/v1/download', download);
-app.use('/v2/upload', uploadController);
-app.use('/v2/download', downloadController);
-app.use('/v2/info', info);
+
+app.use('/v2/file', index);
+// app.use('/v2/file', uploadController);
+// app.use('/v2/file', downloadController);
+// app.use('/v2/file', deleteController);
+app.use('/v2/info', infoController);
 
 mongoose.connect('mongodb://localhost/Files'); // connect to our database
 
