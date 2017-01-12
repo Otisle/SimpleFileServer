@@ -7,7 +7,7 @@
 .vscode/
 tsconfig.json
 jsconfig.json
-
+resource/
 
 ### Node ###
 # Logs
