@@ -4,9 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var upload = require('./routes/v1/upload');
 var download = require('./routes/v1/download');
+
+var uploadController = require('./routes/v2/uploadController');
+var downloadController = require('./routes/v2/downloadController');
+var info = require('./routes/v2/fileInfoController');
 
 var app = express();
 
@@ -30,6 +35,11 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.use('/v1/upload', upload);
 app.use('/v1/download', download);
+app.use('/v2/upload', uploadController);
+app.use('/v2/download', downloadController);
+app.use('/v2/info', info);
+
+mongoose.connect('mongodb://localhost/Files'); // connect to our database
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
