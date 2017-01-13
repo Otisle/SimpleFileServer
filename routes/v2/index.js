@@ -10,6 +10,6 @@ router.post('/*', POST);
 
 router.get('/*', GET);
 
-router.get('/*', DELETE);
+router.delete('/*', DELETE);
 
 module.exports = router;
