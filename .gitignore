@@ -8,6 +8,7 @@
 tsconfig.json
 jsconfig.json
 resource/
+db/
 
 ### Node ###
 # Logs
