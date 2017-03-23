@@ -44,6 +44,11 @@ app.use('/v2/file', index);
 // app.use('/v2/file', deleteController);
 app.use('/v2/info', infoController);
 
+app.get('/*', function(req, res) {
+  res.writeHead(200);
+  res.end('Hello!');
+});
+
 mongoose.connect('mongodb://localhost/Files'); // connect to our database
 
 // catch 404 and forward to error handler
